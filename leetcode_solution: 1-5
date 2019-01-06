@@ -38,5 +38,32 @@ class Solution:
                 return [buff_dict[nums[i]], i]
             else:
                 buff_dict[target - nums[i]] = i
+3. Longest Substring Without Repeating Characters
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if len(set(s)) == 1:
+            return 1
+        if s== '':
+            return 0
+        ans = 1
+        i = 0
+        while i < len(s):
+            j = i
+            stri = ''
+            while j < len(s):
+                if s[j] not in stri:
+                    stri += s[j]
+                    j += 1
+                else:
+                    ans = max(ans, len(stri))
+                    break
+                if j == len(s):
+                    ans = max(ans, len(stri))
+            i += 1
+        return ans
 
 
