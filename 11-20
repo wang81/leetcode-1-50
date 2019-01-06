@@ -1,0 +1,75 @@
+11. Container With Most Water
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        left, right = 0, len(height)-1 
+        area = (right-left)*min(height[left], height[right])
+        while left < right:
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+            temp = (right-left)*min(height[left], height[right])
+            area = max(temp, area)
+        return area
+
+14. Longest Common Prefix
+
+method 1:
+ class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if len(strs) == 0:
+            return ''
+        s = sorted(strs, key=lambda x: len(x))
+        ls = len(s[0])
+        for i in range(ls, -1, -1):
+            if len(set([ele[:i] for ele in strs])) == 1:
+                return s[0][:i]
+ method 2:          
+ class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if len(strs) == 0:
+            return ''
+        s = sorted(strs, key=lambda x: len(x))
+        i = len(s[0])
+        while i >= 0:
+            j = 0
+            while j < len(s[1:]):
+                if s[0][:i] == s[1:][j][: i]:
+                    j += 1
+                else:
+                    break
+            if j == len(s[1: ]):
+                return s[0][: i]
+            else:
+                i -= 1
+ 
+20. Valid Parentheses
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        dic = {'(' : ')', '[': ']', '{': '}'}
+        lists =[]
+        for ele in s:
+            if ele in dic.keys():
+                lists.append(ele)
+            elif lists != [] and ele in dic.values():
+                if dic[lists.pop()] != ele:
+                    return False
+            else:
+                return False
+        return lists == []
