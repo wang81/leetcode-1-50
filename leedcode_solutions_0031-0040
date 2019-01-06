@@ -64,3 +64,5 @@ class Solution(object):
                 return i
         if i == len(nums) - 1:
             return i+1
+            
+  
