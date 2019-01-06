@@ -38,6 +38,7 @@ class Solution:
                 return [buff_dict[nums[i]], i]
             else:
                 buff_dict[target - nums[i]] = i
+                
 3. Longest Substring Without Repeating Characters
 class Solution:
     def lengthOfLongestSubstring(self, s):
@@ -65,5 +66,70 @@ class Solution:
                     ans = max(ans, len(stri))
             i += 1
         return ans
+        
+5. Longest Palindromic Substring
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        if s == s[::-1]:
+            return s
+        res = []
+        for i in range(len(s)):
+            for j in range(i+1, len(s)+1):
+                if s[i: j] == s[i: j][::-1]:
+                    res.append(s[i:j])
+        ans = sorted(res, key = lambda x: len(x), reverse = True)
+        return ans[0]
+        
+7. Reverse Integer
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x < 0:
+            num = -x
+        if x > 0:
+            num =x
+            
+        if x == 0:
+            return 0
+        
+        strx = ''
+        while num != 0:
+            strx += str(num % 10)
+            num = num//10
+            
+        if x > 2** 31 - 1 or x< -2**31 or int(strx) > 2** 31 - 1 or int(strx) < -2**31:
+            return 0
+        if x > 0:
+            return int(strx)
+        else:
+            return -int(strx)
+            
+ 9. Palindrome Number
+ class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if x < 0:
+            return False
+        i = 0
+        j = len(str(x))-1
+        strx = str(x)
+        while i < j:
+            if strx[i] == strx[j]:
+                i += 1
+                j -= 1
+            else:
+                return False
+        return True
+ 
 
 
