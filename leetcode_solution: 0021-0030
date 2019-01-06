@@ -1,0 +1,87 @@
+26. Remove Duplicates from Sorted Array
+method 1:
+def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        i = len(nums)-1
+        while i > 0:
+            if nums[i] == nums[i-1]:
+                nums.remove(nums[i])
+            i -= 1
+method 2:
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 1:
+            return 1
+        if len(nums) == 0:
+            nums = []
+        length = 0
+        for i in range(len(nums)):
+            if nums[i] == nums[i-1]:
+                continue
+            else:
+                nums[length] = nums[i]
+                length += 1
+        if  len(set(nums)) == 1:
+            nums[: ] = nums[: 1]
+        else:
+            nums[:] = nums[:length]
+method 3:
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 1:
+            return 1
+        if len(nums) == 0:
+            nums = []
+        length = 1
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i-1]:
+                continue
+            else:
+                nums[length] = nums[i]
+                length += 1
+        if  len(set(nums)) == 1:
+            nums[: ] = nums[: 1]
+        else:
+            nums[:] = nums[:length]
+            
+ 27. Remove Element
+ class Solution:
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        while val in nums:
+            nums.remove(val)
+        return len(nums)
+ 
+ 28. Implement strStr()
+ class Solution:
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        lsn = len(needle)
+        lsh = len(haystack)
+        
+        for i in range(lsh - lsn + 1):
+            if haystack[i : i+lsn] == needle:
+                return i
+        return -1
+
+ 
