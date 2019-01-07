@@ -1,0 +1,40 @@
+66. Plus One
+class Solution:
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        ls = len(digits)
+        res = 0
+        for i in range(ls):
+            res += digits[i] * 10**(ls - i - 1)
+        res += 1
+        lst = []
+        for ele in str(res):
+            lst.append(int(ele))
+        return lst
+        
+67. Add Binary
+class Solution:
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        if a == '0' and  b == '0':
+            return '0'
+        numa = 0
+        for i in range(len(a)):
+            numa += int(a[i]) * 2 ** (len(a) - i -1)
+        numb = 0
+        for i in range(len(b)):
+            numb += int(b[i]) * 2 ** (len(b) - i -1)
+        sums = numa + numb
+        
+        strs = ''
+        while sums != 0:
+            strs += str(sums % 2)
+            sums = sums//2
+        return strs[::-1]
